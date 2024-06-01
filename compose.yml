@@ -1,0 +1,15 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./:/app:cached
+    ports:
+      - "3000:3000"
+    tty: true
+    # command: >
+    #   /bin/sh -c '
+    #   npx create-react-app@latest --ts
+    #   '
