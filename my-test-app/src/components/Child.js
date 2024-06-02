@@ -1,10 +1,10 @@
 import "./Child.css"
-import { List } from "./list"
+// import { List } from "./list"
 const Child = () => {
     return (
         <div className="component">
-            <h3>Hello</h3>
-            <List />
+            <h3>Child Component</h3>
+            {/* <List /> */}
         </div>
     );
 };

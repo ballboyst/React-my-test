@@ -1,7 +1,13 @@
-import "./components/Child.css"
-import Child from "./components/Child"
+import Child from './components/Child';
 const Example = () => {
-    return <Child />;
-};
-
-export default Example;
+    return (
+      <div>
+        <h3>練習問題</h3>           
+        <p>/componentsフォルダをstart内に作成して、Childにコンポーネントを分離して、Exampleコンポーネントで読み込んでください。</p>
+        <Child />
+      </div>
+    );
+  };
+  
+  export default Example;
+  
