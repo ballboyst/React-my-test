@@ -1,24 +1,22 @@
 import { ColoredMessage } from "./components/coloredMessage";
+import { useState } from "react"
 
 export const App = () => {
-    // ボタンを押した時に実行する関数を定義
+    console.log("レンダリング");
+    const [num, setNum] = useState(0);
+
     const onClickButton = () => {
-        alert();
+        setNum( num + 1);
+        setNum( num + 1);
     };
-
-
-    const contentPinkStyle = {
-        color: "pink",
-        fontSize: "20px"
-    };
-
 
     return (
         <>
             <h1 style={{color: "red"}}>こんにちは</h1>
-            <ColoredMessage color="blue" message="お元気ですか？"/>
-            <p style={contentPinkStyle}>元気です！</p>
+            <ColoredMessage color="blue">お元気ですか？</ColoredMessage>
+            <ColoredMessage color="pink">元気です！</ColoredMessage>
             <button onClick={onClickButton}>ボタン</button>
+            <p>{num}</p>
         </>
     );
 };
