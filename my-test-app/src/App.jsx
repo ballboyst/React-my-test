@@ -1,22 +1,17 @@
-import { ColoredMessage } from "./components/coloredMessage";
+import { Card } from "./components/Card";
 import { useState } from "react"
 
 export const App = () => {
-    console.log("レンダリング");
-    const [num, setNum] = useState(0);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    const onClickButton = () => {
-        setNum( num + 1);
-        setNum( num + 1);
-    };
+    const onClickSwitch = () => setIsAdmin(!isAdmin);
 
     return (
-        <>
-            <h1 style={{color: "red"}}>こんにちは</h1>
-            <ColoredMessage color="blue">お元気ですか？</ColoredMessage>
-            <ColoredMessage color="pink">元気です！</ColoredMessage>
-            <button onClick={onClickButton}>ボタン</button>
-            <p>{num}</p>
-        </>
+        <div>
+            {isAdmin ? <span>管理者です</span> : <span>管理者以外です</
+        span>}
+            <button onClick={onClickSwitch}>切り替え</button>
+            <Card isAdmin={isAdmin} />
+        </div>
     );
 };
