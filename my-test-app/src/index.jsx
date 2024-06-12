@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom"
-import { StyledComponents } from "./components/StyledComponents";
+import { App } from "./App"
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<StyledComponents />);
+root.render(<App />);
