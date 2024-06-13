@@ -8,8 +8,8 @@ const style = {
     borderRadius: "8px",
 };
 
-export const EditButton = () => {
-    const { isAdmin } = useContext(AdminFlagContext);
+export const EditButton = props => {
+    const { isAdmin } = props;
 
     const contextValue = useContext(AdminFlagContext);
     console.log(contextValue);
