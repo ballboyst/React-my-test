@@ -6,10 +6,9 @@ export const AdminFlagProvider = props => {
     const { children } = props;
 
 // 動作確認のために適当なオブジェクトを定義
-    const sampleObj = { sampleValue: "テスト" };
-
+    const [isAdmin, setIsAdmin] = useState(false);
     return (
-        <AdminFlagContext.Provider value={ sampleObj }>
+        <AdminFlagContext.Provider value={{ isAdmin, setIsAdmin }}>
             {children}
         </AdminFlagContext.Provider>
     );
