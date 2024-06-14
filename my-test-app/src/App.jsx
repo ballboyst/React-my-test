@@ -1,18 +1,42 @@
-import { Card } from "./components/Card";
-import { useContext } from "react"
-import { AdminFlagContext } from "./components/providers/AdminFlagProvider";
+import { useState } from "react";
+import axios from "axios";
+
+
 
 export const App = () => {
-    const {isAdmin, setIsAdmin} = useContext(AdminFlagContext);
+    const [userList, setUserList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
-    // 切り替え押下時
-    const onClickSwitch = () => setIsAdmin(!isAdmin);
+    const onClickFetchUser = () => {
+        setIsLoading(true);
+        setIsError(false);
 
-    return (
-        <div>
-            {isAdmin ? <span>管理者です</span> : <span>管理者以外です</span>}
-            <button onClick={onClickSwitch}>切り替え</button>
-            <Card isAdmin={isAdmin} />
-        </div>
-    );
+    axios
+        .get("https://example.com/users")
+        .then(result => {
+            const users =  result.data.map(user => ({
+                id: user.id,
+                name: `${user.lastname} ${user.firstname}`,
+                age: user.age
+        }));
+        setUserList(users);
+    })
+    .catch(() => setIsError(true))
+    .finally(() => setIsLoading(false));
+};
+
+return (
+    <div>
+        <button onClick={onClickFetchUser}>ユーザー取得</button>
+        {isError && <p style={{ color: "red"}}>エラーが発生しました</p>}
+        {isLoading ? (
+            <p>データ取得中です</p>
+        ) : (
+            userList.map(user => (
+                <p key={user.id}>{`${user.id}:${user.name}(${user.age}歳`}</p>
+            ))
+        )}
+    </div>
+);
 };
