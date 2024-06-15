@@ -1,8 +1,8 @@
 import { FC, useState } from "react"
 
-export const App = () => {
-    return <h1>簡単メモアプリ</h1>
-}
+// export const App = () => {
+//     return <h1>簡単メモアプリ</h1>
+// }
 // 解説:上記コードは分割代入によってreturn文を引数無しでAppメソッドに代入している。
 
 export const App: FC = () =>{
@@ -72,5 +72,16 @@ export const App: FC = () =>{
     );
 };
 
-
+const SButton = styled.button`
+    margin-left: 16px;
+`;
+const SContainer = styled.div`
+    border: solid 1px #ccc;
+    padding: 16px;
+    margin: 8px;
+`;
+const SMemoWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
 
