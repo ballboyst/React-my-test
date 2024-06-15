@@ -52,13 +52,10 @@ export const App: FC = () =>{
             <p>メモ一覧</p>
             <ul>
                 {memos.map((memo, index) => (
+                // 状態変数memosにmapメソッドを適用し、memos内の要素に対し処理をしてmemosに格納する。
+                // mapメソッドには１つ以上の引数が必要で、今回はmemoとindexとなっている。
                     <li key={memo}>
-
-
-
-                        ここに上記処理の内容を記述
-
-
+                    {/* リストを作成しキー属性にメモの内容を指定することで一意に識別することを可能としている。 */}
                         <SMemoWrapper>
                             <p>{memo}</p>
                             <SButton onClick={() => onClickDelete(index)}>削除</SButton>
