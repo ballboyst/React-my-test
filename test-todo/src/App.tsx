@@ -1,5 +1,7 @@
-import { ChangeEvent, FC, useState } from "react"
+import { ChangeEvent, FC, useCallback, useState } from "react"
 import styled from "styled-components";
+import { MemoList } from "./components/MemoList"
+
 // export const App = () => {
 //     return <h1>簡単メモアプリ</h1>
 // }
@@ -32,11 +34,11 @@ export const App: FC = () =>{
         // 解説：状態変数更新用のsetTextに空文字をセットする（つまりリセットする）。
     };
     
-    const onClickDelete = (index: number) => {
+    const onClickDelete = useCallback((index: number)=> {
       const newMemos = [...memos];
       newMemos.splice(index,1);
       setMemos(newMemos);
-    }
+    },[memos]);
     
     
 
@@ -51,29 +53,10 @@ export const App: FC = () =>{
         によってonChangeText関数が実行される。 */}
         <SButton onClick={onClickAdd}>追加</SButton>
         {/* コンポーネントにSButtonという独自の名称をつけ、onClickイベントが発生したらonClickAdd関数を実行する */}
-        <SContainer>
-            <p>メモ一覧</p>
-            <ul>
-                {memos.map((memo, index) => (
-                // 状態変数memosにmapメソッドを適用し、memos内の要素に対し処理をしてmemosに格納する。
-                // mapメソッドには１つ以上の引数が必要で、今回はmemoとindexとなっている。
-                    <li key={memo}>
-                    {/* リストを作成しキー属性にメモの内容を指定することで一意に識別することを可能としている。 */}
-                        <SMemoWrapper>
-                            <p>{memo}</p>
-                            <SButton onClick={() => onClickDelete(index)}>削除</SButton>
-                            {/* 削除ボタンが押下されるとonClickイベントが検知されonClickDelete関数を実行する。
-                            引数のindexは削除するメモを特定するために必要。
-                            関数を直接イベントのプロパティに渡す場合（onClickAddなど）はアロー関数にする必要がないが、
-                            特定の値を伴う関数を呼び出す必要がある場合（onClickDelete(index)など）はアロー関数が必要 */}
-                        </SMemoWrapper>
-                    </li>
-                ))}
-            </ul>
-        </SContainer>
-    </SDiv>
-    );
-};
+        <MemoList memos={memos} onClickDelete={onClickDelete} />
+        </SDiv>
+      );
+  };
 
 const SDiv = styled.div`
   text-align: center;
@@ -81,17 +64,10 @@ const SDiv = styled.div`
 
 const SButton = styled.button`
   margin-left: 16px;
+  height: 32px;
+  border-radius: 5px;
 `;
-const SContainer = styled.div`
-  border: solid 1px #ccc;
-  padding: 16px;
-  margin: 8px 20% 8px 20%;
-  font-size: 24px;
-`;
-const SMemoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
+
 const SInput = styled.input`
   height: 30px;
   border-radius: 5px;
