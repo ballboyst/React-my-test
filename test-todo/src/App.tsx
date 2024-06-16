@@ -41,9 +41,9 @@ export const App: FC = () =>{
     
 
     return (
-        <div>
+        <SDiv>
         <h1>簡単メモアプリ</h1>
-        <input type="text" value={text} onChange={onChangeText} />
+        <SInput type="text" value={text} onChange={onChangeText} />
         {/* Reactはタグ内で{}で囲むことでJSを記述できる。つまり、value={text}はvalueに状態変数textをバインドするので
         入力フィールドにはtextの内容が表示される
         onChange={onChangeText}は入力フィールドを更新した時に呼び出す関数を指定している。
@@ -71,20 +71,29 @@ export const App: FC = () =>{
                 ))}
             </ul>
         </SContainer>
-    </div>
+    </SDiv>
     );
 };
 
-const SButton = styled.button`
-    margin-left: 16px;
-`;
-const SContainer = styled.div`
-    border: solid 1px #ccc;
-    padding: 16px;
-    margin: 8px;
-`;
-const SMemoWrapper = styled.div`
-    display: flex;
-    align-items: center;
+const SDiv = styled.div`
+  text-align: center;
 `;
 
+const SButton = styled.button`
+  margin-left: 16px;
+`;
+const SContainer = styled.div`
+  border: solid 1px #ccc;
+  padding: 16px;
+  margin: 8px 20% 8px 20%;
+  font-size: 24px;
+`;
+const SMemoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const SInput = styled.input`
+  height: 30px;
+  border-radius: 5px;
+  font-size: 20px;
+`;
