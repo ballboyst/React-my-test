@@ -2,6 +2,7 @@ import { useState } from "react";
 export const App = () => {
     const [text, setText] = useState("");
     const [list,setList] = useState([]);
+    const onChangeText = (e) => {setText(e.target.value)}
     const onClickAdd = () => {
     const newList = [...list, "list"];
     setList(newList);
@@ -11,15 +12,16 @@ export const App = () => {
         <>
             <h1>todoリスト</h1>
             <div>
-                <input type="text"></input>
-                <button onClick={onClickAdd}>送信</button>
+                <input type="text" value={text} id="text" onChange={onChangeText}></input>
+                <button id="addButton">送信</button>
             </div>
-        <div>
             <p>memoリスト</p>
             <ul>
-                {list}
+                <div>
+                    <p id = "output"></p>
+                    <button id="delete Button">削除</button>
+                </div>
             </ul>
-        </div>
         </>
     )
 };
