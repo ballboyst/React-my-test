@@ -8,19 +8,19 @@ export const App: FC = () =>{
     const [memos, setMemos] = useState<string[]>([]);
     const onChangeText = (e:ChangeEvent<HTMLInputElement>) =>setText(e.target.value);
     const onClickAdd = () => {
-        const newMemos =  [...memos];
-        newMemos.push(text);
-        setMemos(newMemos);
-       setText("");
+      const newMemos =  [...memos];
+      newMemos.push(text);
+      setMemos(newMemos);
+      setText("");
     };
-    
+
     const onClickDelete = useCallback((index: number)=> {
       const newMemos = [...memos];
       newMemos.splice(index,1);
       setMemos(newMemos);
     },[memos]);
-    
-    
+
+
 
     return (
         <SDiv>
@@ -68,7 +68,7 @@ const SInput = styled.input`
 
     // l13：State更新用のsetMemosは引数としてnewMemosを受け取り、memosを更新する。
     // 結果、Reactが更新を検知しUIを再レンダリングし画面に反映する。
- 
+
     // l14：状態変数更新用のsetTextに空文字をセットする（つまりリセットする）。
 
     // l28:{/* Reactはタグ内で{}で囲むことでJSを記述できる。つまり、value={text}はvalueに状態変数textをバインドするので
