@@ -22,7 +22,7 @@ export const App = () => {
         <h1>簡単メモリスト</h1>
         <input type="text" value={text} onChange={onChangeText} />
         <SButton onClick={onClickAdd}>追加</SButton>
-            <SContainer>
+            {/* <SContainer>
                 <p>memo list</p>
                 <ul>
                     {memos.map((memo,index) => 
@@ -34,7 +34,7 @@ export const App = () => {
                         </li>
                     )}
                 </ul>
-            </SContainer>
+            </SContainer> */}
         </div>
     );
 };
@@ -45,9 +45,9 @@ const SButton = styled.button`
     margin: 16px;
 `;
 
-const SContainer = styled.div`
-    border: solid 1px #ccc;
-`;
+// const SContainer = styled.div`
+//     border: solid 1px #ccc;
+// `;
 
 const SMemoWrapper = styled.div`
     display: flex;
