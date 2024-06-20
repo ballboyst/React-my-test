@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { memo, useState } from "react";
+import { useState } from "react";
 
 export const App = () => {
     const[text, setText] = useState("");
