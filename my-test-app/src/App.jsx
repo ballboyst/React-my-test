@@ -1,28 +1,57 @@
+import styled from "styled-components"
 import { useState } from "react";
+
 export const App = () => {
     const [text, setText] = useState("");
-    const [list,setList] = useState([]);
-    const onChangeText = (e) => {setText(e.target.value)}
+    const [memos, setMemos] = useState([]);
+    const onChangeText = (e) => setText(e.target.value);
+    // 上記処理はfunction onChangeText(e) = {return setText(e.target.value)};と同じ動作をする
     const onClickAdd = () => {
-    const newList = [...list, "list"];
-    setList(newList);
-    setText = "";
+        const newMemos = [...memos];
+        newMemos.push(text);
+        setMemos(newMemos);
+        setText("");
     };
+
+    const onClickDelete = (index) => {
+        const newMemos = [...memos];
+        newMemos.splice(index, 1);
+        setMemos(newMemos);
+    };
+
     return(
-        <>
+        <div>
             <h1>todoリスト</h1>
-            <div>
-                <input type="text" value={text} id="text" onChange={onChangeText}></input>
-                <button id="addButton">送信</button>
+                <input type="text" value={text} onChange={onChangeText} />
+                <SButton onClick={onClickAdd}>追加</SButton>
+                <SContainer>
+                    <p>memo一覧</p>
+                    <ul>
+                        {memos.map((memo, index) => (
+                            <li key={memo}>
+                                <SMemoWrapper>
+                                    <p>{memo}</p>
+                                    <SButton onclick={() => onClickDelete(index)}>削除</SButton>
+                                </SMemoWrapper>
+                            </li>
+                        ))}
+                    </ul>
+                </SContainer>
             </div>
-            <p>memoリスト</p>
-            <ul>
-                <div>
-                    <p id = "output"></p>
-                    <button id="delete Button">削除</button>
-                </div>
-            </ul>
-        </>
-    )
+        );
 };
 
+const SButton = styled.button`
+    border: solid 1px;
+    border-radius: 5px;
+    margin: 16px;
+`;
+
+const SContainer = styled.div`
+    border: solid 1px #ccc;
+`;
+
+const SMemoWrapper = styled.div`
+    display: flex;
+    align-item: center;
+`;
