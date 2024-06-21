@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { useState } from "react";
+import { MemoList } from "./components/MemoList";
 
 export const App = () => {
     const[text, setText] = useState("");
@@ -15,13 +16,14 @@ export const App = () => {
         const newMemos = [...memos];
         newMemos.splice(index, 1);
         setMemos(newMemos);
-    }
+    };
 
     return(
         <div>
         <h1>簡単メモリスト</h1>
         <input type="text" value={text} onChange={onChangeText} />
         <SButton onClick={onClickAdd}>追加</SButton>
+        <MemoList memos={memos} onClickDelete={onClickDelete} />
             {/* <SContainer>
                 <p>memo list</p>
                 <ul>
@@ -49,7 +51,7 @@ const SButton = styled.button`
 //     border: solid 1px #ccc;
 // `;
 
-const SMemoWrapper = styled.div`
-    display: flex;
-    align-item: center;
-`;
+// const SMemoWrapper = styled.div`
+//     display: flex;
+//     align-item: center;
+// `;
