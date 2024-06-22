@@ -4,7 +4,7 @@ import { MemoList } from "./MemoList";
 import {useMemoList} from "../hooks/useMemoList";
 
 export const App =() =>{
-const {memos, addTodo}=useMemoList();
+const {memos, addTodo, deleteTodo}=useMemoList();
 const [text, setText]=useState("");
 // const [memos, setMemos]=useState([]);
 const onChangeText = (e) => {setText(e.target.value)};
@@ -16,9 +16,10 @@ const onClickAdd = () => {
     setText("");
 };
 const onClickDelete = (index) => {
-    const newMemos = [...memos];
-    newMemos.splice(index,1);
-    setMemos(newMemos);
+    // const newMemos = [...memos];
+    // newMemos.splice(index,1);
+    // setMemos(newMemos);
+    deleteTodo(index);
 };
 
 return(

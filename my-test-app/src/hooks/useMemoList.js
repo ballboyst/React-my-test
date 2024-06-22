@@ -7,4 +7,12 @@ export const useMemoList = () => {
                 newMemos.push(text);
                 setMemos(newMemos);
             },[memos]);
-    };
+
+        const deleteTodo = useCallback((index)=>{
+                const newMemos = [...memos];
+                newMemos.splice(index,1);
+                setMemos(newMemos);
+                },[memos])
+
+return { memos, addTodo, deleteTodo };
+};
