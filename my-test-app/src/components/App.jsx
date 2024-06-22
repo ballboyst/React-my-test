@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useCallback, useState} from "react"
 import styled from "styled-components"
 import { MemoList } from "./MemoList";
 import {useMemoList} from "../hooks/useMemoList";
@@ -15,12 +15,12 @@ const onClickAdd = () => {
     addTodo(text)
     setText("");
 };
-const onClickDelete = (index) => {
+const onClickDelete = useCallback((index) => {
     // const newMemos = [...memos];
     // newMemos.splice(index,1);
     // setMemos(newMemos);
     deleteTodo(index);
-};
+},[deleteTodo]);
 
 return(
 <div>
