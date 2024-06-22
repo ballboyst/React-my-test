@@ -1,16 +1,18 @@
 import {useState} from "react"
 import styled from "styled-components"
-import { MemoList } from "./components/MemoList";
+import { MemoList } from "./MemoList";
+import {useMemoList} from "../hooks/useMemoList";
 
 export const App =() =>{
-
+const {memos, addTodo}=useMemoList();
 const [text, setText]=useState("");
-const [memos, setMemos]=useState([]);
+// const [memos, setMemos]=useState([]);
 const onChangeText = (e) => {setText(e.target.value)};
 const onClickAdd = () => {
-    const newMemos = [...memos];
-    newMemos.push(text);
-    setMemos(newMemos);
+    // const newMemos = [...memos];
+    // newMemos.push(text);
+    // setMemos(newMemos);
+    addTodo(text)
     setText("");
 };
 const onClickDelete = (index) => {

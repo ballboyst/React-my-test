@@ -1,40 +1,39 @@
-import styled from "styled-components";
+import {useState} from "react"
+import styled from "styled-components"
 
-
-export const MemoList = (props) => {
-    const {memos, onClickDelete } = props;
-    // propsを引数にして分割代入でpropsオブジェクトのプロパティを変数に代入する。
-    // 分割代入のコードは以下と同様
-    // const memos = props.memos;
-    // const onClickDelete =props.onClickDelete;
-
+export const MemoList =props=>{
+    const {memos, onClickDelete} = props;
     return(
-    <SContainer>
-                <p>memo list</p>
-                <ul>
-                    {memos.map((memo,index) => 
-                        <li key={memo}>
-                            <SMemoWrapper>
-                                <p>{memo}</p>
-                                <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
-                            </SMemoWrapper>
-                        </li>
-                    )}
-                </ul>
-            </SContainer>);
+        <SContainer>
+        <p>memo一覧</p>
+        <ul>
+            {
+            memos.map(
+                (memo, index) => {
+                    return(
+                <li key={memo}>
+                    <SMemoWrapper>
+                        <p>{memo}</p>
+                        <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
+                    </SMemoWrapper>
+                </li>)
+                }
+            )}
+        </ul>
+        </SContainer>
+    )
 };
 
-const SContainer = styled.div`
-    border: solid 1px #ccc;
-`;
-
-const SMemoWrapper = styled.div`
-    display: flex;
-    align-item: center;
-`;
 
 const SButton = styled.button`
-    border: solid 1px;
-    border-radius: 5px;
-    margin: 16px;
-`;
+    margin-left: 16px;
+    `;
+const SContainer = styled.div`
+    border: solid 1px #ccc;
+    padding: 16px;
+    margin: 8px;
+    `;
+const SMemoWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    `;
