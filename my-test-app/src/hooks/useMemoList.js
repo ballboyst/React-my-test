@@ -1,18 +1,24 @@
-import {useState, useCallback} from "react";
+import {useCallback,useState} from "react"
 
 export const useMemoList = () => {
-        const [memos, setMemos]=useState([]);
-        const addTodo = useCallback((text) => {
-                const newMemos=[...memos];
-                newMemos.push(text);
-                setMemos(newMemos);
-            },[memos]);
+    const [memos,setMemos] = useState([]);
 
-        const deleteTodo = useCallback((index)=>{
-                const newMemos = [...memos];
-                newMemos.splice(index,1);
-                setMemos(newMemos);
-                },[memos])
+    const addTodo = useCallback(
+        (text) => {
+            const newMemos = [...memos];
+            newMemos.push(text);
+            setMemos(newMemos);
+            },
+        [memos]);
 
-return { memos, addTodo, deleteTodo };
+    const deleteTodo = useCallback(
+        (index) => {
+            const newMemos = [...memos];
+            newMemos.splice(index,1);
+            setMemos(newMemos);
+        },[memos])
+    
+    return{
+        memos, addTodo, deleteTodo
+    }
 };

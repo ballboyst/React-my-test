@@ -1,26 +1,27 @@
-import {useCallback, useState} from "react"
+import {useState} from "react"
 import styled from "styled-components"
 import { MemoList } from "./MemoList";
-import {useMemoList} from "../hooks/useMemoList";
+import { useMemoList } from "../hooks/useMemoList";
+
 
 export const App =() =>{
-const {memos, addTodo, deleteTodo}=useMemoList();
+const {memos, addTodo, deleteTodo} = useMemoList();
 const [text, setText]=useState("");
 // const [memos, setMemos]=useState([]);
 const onChangeText = (e) => {setText(e.target.value)};
 const onClickAdd = () => {
+    addTodo(text)
     // const newMemos = [...memos];
     // newMemos.push(text);
     // setMemos(newMemos);
-    addTodo(text)
     setText("");
 };
-const onClickDelete = useCallback((index) => {
-    // const newMemos = [...memos];
-    // newMemos.splice(index,1);
-    // setMemos(newMemos);
-    deleteTodo(index);
-},[deleteTodo]);
+const onClickDelete = (index) => {
+    deleteTodo(index)
+//     const newMemos = [...memos];
+//     newMemos.splice(index,1);
+//     setMemos(newMemos);
+};
 
 return(
 <div>
