@@ -1,4 +1,3 @@
-import {useState} from "react"
 import styled from "styled-components"
 
 export const MemoList =props=>{
@@ -12,7 +11,7 @@ export const MemoList =props=>{
                 (memo, index) => {
                     return(
                 <li key={memo}>
-                    <SMemoWrapper>
+                    <SMemoWrapper class="search-target">
                         <p>{memo}</p>
                         <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
                     </SMemoWrapper>

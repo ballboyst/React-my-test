@@ -23,6 +23,7 @@ const onClickDelete = (index) => {
 //     setMemos(newMemos);
 };
 
+
 return(
 <div>
     <h1>簡単メモリスト</h1>
@@ -30,6 +31,8 @@ return(
         <input type="text" value={text} onChange={onChangeText}></input>
         <SButton onClick={onClickAdd} >追加</SButton>
     </div>
+    {/* 検索機能 */}
+    <input type="text" id="search-input" placeholder="キーワードを入力"></input>
     <MemoList memos={memos} onClickDelete={onClickDelete} />
     {/* <SContainer>
         <p>memo一覧</p>
@@ -51,6 +54,37 @@ return(
 </div>
 )
 };
+
+// 検索機能
+// const searchInput = document.getElementById('search-input');
+// searchInput.addEventListener('input',()=>{
+//     const keyword = searchInput.value;
+//     console.log(keyword)
+// })
+// const searchTargets = document.querySelectorAll('.search-target');
+// searchInput.addEventListener('input',()=>{
+//     const keyword = searchInput.value.trim().toLowerCase();
+//     console.log(keyword);
+// });
+// const searchResults = document.getElementById('search-results');
+// function showSearchResult(target){
+//     target.style.display = "block";
+// }
+// function hideSearchResult(target){
+//     target.style.display = "none";
+// }
+// function filterSearchResults(){
+//     searchTargets.forEach((target)=>{
+//         const text = target.textContent.toLowerCase();
+//         if(text.includes(keyword)){
+//             showSearchResult(target);
+//         } else {
+//             hideSearchResult(target);
+//         }
+//     });
+// }
+// searchInput.addEventListener('input',filterSearchResults);
+
 
 const SButton = styled.button`
     margin-left: 16px;
