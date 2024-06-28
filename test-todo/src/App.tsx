@@ -1,6 +1,10 @@
-import { ChangeEvent, FC, useCallback, useState } from "react"
+import { ChangeEvent, FC, useCallback, useContext, useState } from "react"
 import styled from "styled-components";
 import { MemoList } from "./components/MemoList"
+// 以下３行はコンテキストの使用に関するコードを試験的に記述
+import { AdminFlagContext } from "./components/providers/AdminFlagProvider";
+const contextValue = useContext(AdminFlagContext);
+console.log(contextValue);
 
 
 export const App: FC = () =>{

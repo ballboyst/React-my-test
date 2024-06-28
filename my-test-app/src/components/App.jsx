@@ -35,7 +35,7 @@ return(
     <input 
         type="text" 
         id="search-input" 
-        value = {search}
+        // value = {search}
         placeholder="キーワードを入力">
     </input>
     <MemoList memos={memos} onClickDelete={onClickDelete} />
