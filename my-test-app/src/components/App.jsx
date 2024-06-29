@@ -12,6 +12,11 @@ export const App = () => {
         setMemos(newMemos);
         setText("");
         };
+    const onClickDelete = (index) => {
+        const newMemos=[...memos];
+        newMemos.splice(index,1);
+        setMemos(newMemos);
+    }
     return (
         <SDiv>
             <h1>簡単メモアプリ</h1>
@@ -23,9 +28,12 @@ export const App = () => {
                     <ul>
                         {
                         memos.map(
-                            (memo)=>(
+                            (memo,index)=>(
                             <li key={memo}>
+                            <SContainer>
                             <p>{memo}</p>
+                            <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
+                            </SContainer>
                             </li>
                                 )
                             )
@@ -54,4 +62,7 @@ const SMemo = styled.div`
     font-size: 16px;
     border: solid 2px black;
     border-radius: 5px;
+`;
+const SContainer = styled.div`
+    display: flex;
 `;
