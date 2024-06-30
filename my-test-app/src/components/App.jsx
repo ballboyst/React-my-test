@@ -2,25 +2,27 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components"
 import { MemoList } from "./MemoList";
+import { useMemo } from "../hooks/useMemo";
 
 const App = () => {
-    const [text,setText] = useState("");
-    const [memos,setMemos] = useState([]);
+    const {text, memos, onChangeText, onClickAdd, onClickDelete} = useMemo();
+//     const [text,setText] = useState("");
+//     const [memos,setMemos] = useState([]);
 
-    const onChangeText = (e) => {setText(e.target.value)
-    };
+//     const onChangeText = (e) => {setText(e.target.value)
+//     };
 
-    const onClickAdd = () => {
-        const newMemos = [...memos];
-        newMemos.push(text);
-        setMemos(newMemos);
-    };
+//     const onClickAdd = () => {
+//         const newMemos = [...memos];
+//         newMemos.push(text);
+//         setMemos(newMemos);
+//     };
 
-    const onClickDelete = (index)=> {
-        const newMemos = [...memos];
-        newMemos.splice(index, 1);
-        setMemos(newMemos);
-    }
+//     const onClickDelete = (index)=> {
+//         const newMemos = [...memos];
+//         newMemos.splice(index, 1);
+//         setMemos(newMemos);
+//     }
 
     return(
     <SDiv>
@@ -29,7 +31,7 @@ const App = () => {
     <SButton onClick={onClickAdd}>追加</SButton>
     <p>メモリスト</p>
     <MemoList memos={memos} onClick={onClickDelete} />
-    {/* <ul>{
+    <ul>{
         memos.map(
             (memo, index)=>(
                 <SMemos>
@@ -38,7 +40,7 @@ const App = () => {
                 </SMemos>
             )
         )}
-    </ul> */}
+    </ul>
     </SDiv>
     )
 };
@@ -52,9 +54,9 @@ const SButton = styled.button`
     border-radius: 5px;
     margin: 5px;
 `;
-// const SMemos = styled.div`
-//     display:flex;
-// `;
+const SMemos = styled.div`
+    display:flex;
+`;
 
 
 export default(App);
