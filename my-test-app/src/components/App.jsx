@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { useState } from "react";
 // import styled from "styled-components"
 
@@ -11,7 +11,6 @@ const App = () => {
 
     const onClickAdd = () => {
         const newMemos = [...memos];
-        setText={text};
         newMemos.push(text);
         setMemos(newMemos);
     };
@@ -24,9 +23,9 @@ const App = () => {
     <p>メモリスト</p>
     <ul>{
         memos.map(
-            (memo)=>{
+            (memo)=>(
                 <li>{memo}</li>
-            }
+            )
         )}
     </ul>
     </div>
