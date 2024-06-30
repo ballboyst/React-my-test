@@ -4,12 +4,7 @@ import { useState } from "react";
 
 
 export const MemoList = (props) =>{
-    const [memos,setMemos] = useState([]);
-    const onClickDelete = (index)=> {
-    const newMemos = [...memos];
-    newMemos.splice(index, 1);
-    setMemos(newMemos);
-    }
+    const {memos, onClickDelete}=props;
     return(
     <ul>{
         memos.map(
