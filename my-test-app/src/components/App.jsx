@@ -30,7 +30,8 @@ const App = () => {
                 <input type="text" value={text} onChange={onChangeText} />
                 <SButton onClick={onClickAdd}>追加</SButton>
             </SContainer>
-            <p>メモリスト</p>
+            <MemoList memo={memos} onClickDelete={onClickDelete} />
+            {/* <p>メモリスト</p>
             <ul>
                 {memos.map(
                     (memo, index)=>(
@@ -41,7 +42,7 @@ const App = () => {
                             </SContainer>
                         </li>
                     ))}
-            </ul>
+            </ul> */}
         </SDiv>
     )
 
@@ -55,7 +56,6 @@ const SDiv = styled.div`
 const SContainer = styled.div`
     display: flex;
     margin-left: 40%;
-
 `;
 const SButton = styled.button`
     border: solid 1px;
