@@ -17,6 +17,8 @@ const App = () => {
         const newMemos =  [...memos];
         newMemos.splice(index, 1);
         setMemos(newMemos);
+        // デバッグ用コード
+        console.log("削除しました");
     };
 
 
@@ -25,7 +27,7 @@ const App = () => {
         <SDiv>
             <h1>簡単メモ</h1>
             <SContainer>
-                <input type="text" value={text} onChange={onChangeText}></input>
+                <input type="text" value={text} onChange={onChangeText} />
                 <SButton onClick={onClickAdd}>追加</SButton>
             </SContainer>
             <p>メモリスト</p>
@@ -35,7 +37,7 @@ const App = () => {
                         <li key={memo}>
                             <SContainer>
                                 <p>{memo}</p>
-                                <SButton onClick={onClickDelete(index)}>削除</SButton>
+                                <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
                             </SContainer>
                         </li>
                     ))}
