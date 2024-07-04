@@ -1,6 +1,7 @@
 import React from "react"
 import {useState} from "react"
 import styled from "styled-components"
+import { MemoList } from "./MemoList";
 
 const App = () => {
     const [text, setText]=useState("");
@@ -30,9 +31,9 @@ const App = () => {
                 <input type="text" value={text} onChange={onChangeText} />
                 <SButton onClick={onClickAdd}>追加</SButton>
             </SContainer>
-            <MemoList memo={memos} onClickDelete={onClickDelete} />
-            {/* <p>メモリスト</p>
-            <ul>
+            <p>メモリスト</p>
+            <MemoList memos={memos} onClickDelete={onClickDelete} />
+            {/* <ul>
                 {memos.map(
                     (memo, index)=>(
                         <li key={memo}>
