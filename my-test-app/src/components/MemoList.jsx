@@ -10,9 +10,9 @@ export const MemoList = (props) =>{
     return(
         <ul>
             {/* コンテキストを使用 */}
-            <memoContext.Provider value={memos}>
+            {/* <memoContext.Provider value={memos}>
                 {children}
-            </memoContext.Provider>
+            </memoContext.Provider> */}
         {memos.map(
             (memo, index)=>(
                 <li key={memo}>
