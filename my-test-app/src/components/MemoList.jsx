@@ -2,17 +2,15 @@ import { useContext } from "react";
 import { memoContext } from "./providers/memoContext";
 import styled from "styled-components";
 
-export const MemoList = (props) =>{
-    const {onClickDelete} = props;
-    // memosをpropsから除外しコンテキストとして定義
-    const memos = useContext(memoContext);
+// export const MemoList = (props) =>{
+//     const {memos, onClickDelete} = props;
+
+export const MemoList = () => {
+    const {memos, onClickDelete} = useContext(memoContext);
+
 
     return(
         <ul>
-            {/* コンテキストを使用 */}
-            {/* <memoContext.Provider value={memos}>
-                {children}
-            </memoContext.Provider> */}
         {memos.map(
             (memo, index)=>(
                 <li key={memo}>

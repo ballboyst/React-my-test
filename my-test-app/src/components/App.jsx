@@ -2,6 +2,7 @@ import React from "react"
 import {useState} from "react"
 import styled from "styled-components"
 import { MemoList } from "./MemoList";
+import { memoContext } from "./providers/memoContext";
 
 const App = () => {
     const [text, setText]=useState("");
@@ -31,8 +32,10 @@ const App = () => {
                 <input type="text" value={text} onChange={onChangeText} />
                 <SButton onClick={onClickAdd}>追加</SButton>
             </SContainer>
-            <p>メモリスト</p>
-            <MemoList memos={memos} onClickDelete={onClickDelete} />
+            <memoContext.Provider value={{memos, onClickDelete}}>
+               <p>メモリスト</p>
+                <MemoList />
+            </memoContext.Provider>
             {/* <ul>
                 {memos.map(
                     (memo, index)=>(
