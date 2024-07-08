@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 import { useState } from "react";
+import {styled} from "styled-components";
 
 const App = () => {
     // 状態変数の定義
@@ -17,29 +18,50 @@ const App = () => {
         const newMemos = [...memos];
         newMemos.splice(index, 1);
         setMemos(newMemos);
+        console.log("delete")
     };
 
     return(
-        <div>
+        <SDiv>
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
-            <button onClick={onClickAdd}>追加</button>
+            <SButton onClick={onClickAdd}>追加</SButton>
             <div>
                 <p>memoリスト</p>
-                <ul>
+                <Ul key={memo}>
                     {memos.map(
-                        (memo) => (
+                        (memo, index) => (
                         <li>
+                            <SWrapper>
                             <p>{memo}</p>
-                            <button onClick={onClickDelete}>削除</button>
+                            <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
+                            </SWrapper>
                         </li>
                         )
                     )}
-                </ul>
+                </Ul>
             </div>
-        </div>
+        </SDiv>
 
     )
 };
+
+const SDiv = styled.div`
+    text-align: center
+`;
+const SButton = styled.button`
+    border: solid 1px;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+    width: 60px;
+`;
+const SWrapper = styled.div`
+    display:flex;
+    align-items: center;
+`;
+const Ul =styled.ul`
+    margin-left:20%;
+`;
 
 export default(App);
