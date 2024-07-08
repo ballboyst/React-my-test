@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { useState } from "react";
 import {styled} from "styled-components";
+import { MemoList } from "./MemoLis";
 
 const App = () => {
     // 状態変数の定義
@@ -26,7 +27,8 @@ const App = () => {
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
-            <div>
+            <MemoList />
+            {/* <div>
                 <p>memoリスト</p>
                 <Ul key={memo}>
                     {memos.map(
@@ -40,7 +42,7 @@ const App = () => {
                         )
                     )}
                 </Ul>
-            </div>
+            </div> */}
         </SDiv>
 
     )
@@ -56,12 +58,12 @@ const SButton = styled.button`
     height: 30px;
     width: 60px;
 `;
-const SWrapper = styled.div`
-    display:flex;
-    align-items: center;
-`;
-const Ul =styled.ul`
-    margin-left:20%;
-`;
+// const SWrapper = styled.div`
+//     display:flex;
+//     align-items: center;
+// `;
+// const Ul =styled.ul`
+//     margin-left:20%;
+// `;
 
 export default(App);
