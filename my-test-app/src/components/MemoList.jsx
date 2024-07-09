@@ -1,16 +1,15 @@
 import React from "react";
-import { useState } from "react";
-import {styled} from "styled-components";
+import styled from "styled-components";
 
 export const MemoList = (props) =>{
     const {memos,onClickDelete} = props;
     return(
         <div>
         <p>memoリスト</p>
-        <Ul key={memo}>
+        <Ul>
             {memos.map(
                 (memo, index) => (
-                <li>
+                <li key={memo}>
                     <SWrapper>
                     <p>{memo}</p>
                     <SButton onClick={()=>onClickDelete(index)}>削除</SButton>

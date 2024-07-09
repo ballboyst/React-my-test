@@ -1,7 +1,8 @@
-import React, { memo } from "react";
+import React from "react";
 import { useState } from "react";
-import {styled} from "styled-components";
-import { MemoList } from "./MemoLis";
+import styled from "styled-components";
+import { MemoList } from "./MemoList";
+import { useCallback } from "react";
 
 const App = () => {
     // 状態変数の定義
@@ -15,19 +16,20 @@ const App = () => {
         setMemos(newMemos);
         setText("");
     };
-    const onClickDelete = (index) =>{
-        const newMemos = [...memos];
-        newMemos.splice(index, 1);
-        setMemos(newMemos);
-        console.log("delete")
-    };
+    const onClickDelete = useCallback(
+        (index) =>{
+            const newMemos = [...memos];
+            newMemos.splice(index, 1);
+            setMemos(newMemos);
+        },[memos]
+    );
 
     return(
         <SDiv>
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
-            <MemoList />
+            <MemoList memos={memos} onClickDelete={onClickDelete} />
             {/* <div>
                 <p>memoリスト</p>
                 <Ul key={memo}>
