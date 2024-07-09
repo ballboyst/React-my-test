@@ -28,7 +28,7 @@ const App = () => {
     <input type="text" value={text} onChange={onChangeText}></input>
     <SButton onClick={onClickAdd}>追加</SButton>
     <p>メモリスト</p>
-    <MemoList memos={memos} onClick={onClickDelete} />
+    <MemoList memos={memos} onClickDelete={onClickDelete} />
     {/* <ul>{
         memos.map(
             (memo, index)=>(
