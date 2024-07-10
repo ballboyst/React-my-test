@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import App from "./components/App";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // 解説：document.getElementById("root")はindex.htmlからid=rootの要素を取得し、ルート要素に指定する。
 // 解説:ReactDOM.createRoot()は非同期レンダリングモデルを使用できるようにするメソッド
