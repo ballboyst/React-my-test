@@ -2,26 +2,30 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { MemoList } from "./MemoList";
-import { useCallback } from "react";
+// import { useCallback } from "react";
+import { useMemoList } from "../hooks/useMemoList";
 
-const App = () => {
+export const App = () => {
     // 状態変数の定義
     const [text, setText] = useState("");
-    const [memos, setMemos] = useState([]);
+    const {memos, addTodo, deleteTodo} = useMemoList();
+    // const [memos, setMemos] = useState([]);
     // イベントアクションの定義
     const onChangeText = (e) => setText(e.target.value);
     const onClickAdd = () => {
-        const newMemos = [...memos];
-        newMemos.push(text);
-        setMemos(newMemos);
+    //     const newMemos = [...memos];
+    //     newMemos.push(text);
+    //     setMemos(newMemos);
+        addTodo(text);
         setText("");
     };
-    const onClickDelete = useCallback(
+    const onClickDelete =(
         (index) =>{
-            const newMemos = [...memos];
-            newMemos.splice(index, 1);
-            setMemos(newMemos);
-        },[memos]
+            // const newMemos = [...memos];
+            // newMemos.splice(index, 1);
+            // setMemos(newMemos);
+            deleteTodo(index)
+        }
     );
 
     return(

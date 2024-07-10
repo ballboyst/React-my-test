@@ -6,7 +6,6 @@ export const useMemoList = () => {
         const newMemos = [...memos];
         newMemos.push(text);
         setMemos(newMemos);
-        setText("");
     }
     const deleteTodo = (index) => {
         const newMemos = [...memos];
