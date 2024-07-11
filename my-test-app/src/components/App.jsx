@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { MemoList } from "./MemoList";
 // import { useCallback } from "react";
 import { useMemoList } from "../hooks/useMemoList";
+import {Provider} from "react-redux";
+import {TodoContainer} from "../features/TodoContainer";
+import {store} from "../features/store";
 
 export const App = () => {
     // 状態変数の定義
@@ -30,6 +33,7 @@ export const App = () => {
 
     return(
         <SDiv>
+            <Provider store={store}>
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
@@ -49,6 +53,7 @@ export const App = () => {
                     )}
                 </Ul>
             </div> */}
+            </Provider>
         </SDiv>
 
     )
