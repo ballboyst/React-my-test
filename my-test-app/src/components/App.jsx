@@ -5,13 +5,14 @@ import { MemoList } from "./MemoList";
 // import { useCallback } from "react";
 import { useMemoList } from "../hooks/useMemoList";
 import {Provider} from "react-redux";
-import {TodoContainer} from "../features/TodoContainer";
+// import {TodoContainer} from "../features/TodoContainer";
 import {store} from "../features/store";
 
 export const App = () => {
     // 状態変数の定義
     const [text, setText] = useState("");
     const {memos, addTodo, deleteTodo} = useMemoList();
+    const {filter, setFilter} = useState("");
     // const [memos, setMemos] = useState([]);
     // イベントアクションの定義
     const onChangeText = (e) => setText(e.target.value);
@@ -30,13 +31,18 @@ export const App = () => {
             deleteTodo(index)
         }
     );
+    const memoFilter = ({filter, setFilter}) => {
+        const handleChange =(e) =>setFilter(e.target.value)
+    };
+
 
     return(
         <SDiv>
-            <Provider store={store}>
+            {/* <Provider store={store}> */}
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
+            <input type ="text" onChange={memoFilter} text={text}></input>
             <MemoList memos={memos} onClickDelete={onClickDelete} />
             {/* <div>
                 <p>memoリスト</p>
@@ -53,7 +59,7 @@ export const App = () => {
                     )}
                 </Ul>
             </div> */}
-            </Provider>
+            {/* </Provider> */}
         </SDiv>
 
     )

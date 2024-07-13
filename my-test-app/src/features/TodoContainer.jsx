@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
+// import {useSelector} from "react-redux";
 
-export const TodoContainer = () =>{
-    const todos = useSelector((state) => state.todos)
-    const args = {
-        todos
-    }
-    return <TodoPresenter {...args} />
-}
+// export const TodoContainer = () =>{
+//     const todos = useSelector((state) => state.todos)
+//     const args = {
+//         todos
+//     }
+//     return <TodoPresenter {...args} />
+// }
