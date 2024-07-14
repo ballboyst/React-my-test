@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-
+// import { useCallback } from "react";
 export const MemoList = (props) =>{
-    const {memos,onClickDelete, filteredMemos} = props;
+    const {onClickDelete, memos} = props;
     return(
         <div>
         <p>memoリスト</p>
         <Ul>
-            {filteredMemos.map(
+            {memos.map(
                 (memo, index) => (
                 <li key={memo}>
                     <SWrapper>
                     <p>{memo}</p>
-                    <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
+                    <SButton onClick={
+                        ()=>onClickDelete(index)}>削除</SButton>
                     </SWrapper>
                 </li>
                 )

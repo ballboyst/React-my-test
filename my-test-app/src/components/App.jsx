@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useMemo } from  "react";
 import styled from "styled-components";
 import { MemoList } from "./MemoList";
-// import { useCallback } from "react";
+import { useCallback } from "react";
 import { useMemoList } from "../hooks/useMemoList";
-import {Provider} from "react-redux";
+// import {Provider} from "react-redux";
 // import {TodoContainer} from "../features/TodoContainer";
-import {store} from "../features/store";
+// import {store} from "../features/store";
 
 export const App = () => {
     // 状態変数の定義
@@ -19,8 +19,8 @@ export const App = () => {
     // イベント動作の定義
     const filteredMemos = useMemo(
         () => {
-            return memos.filter((memo) => memo.includes(setSearchText));
-        }, [memos,setSearchText]
+            return memos.filter((memo) => memo.includes(searchText));
+        }, [memos,searchText]
     );
     const onChangeText = (e) => setText(e.target.value);
     const onClickAdd = () => {
@@ -30,14 +30,14 @@ export const App = () => {
         addTodo(text);
         setText("");
     };
-    const onClickDelete =(
+    const onClickDelete =useCallback(
         (index) =>{
             // const newMemos = [...memos];
             // newMemos.splice(index, 1);
             // setMemos(newMemos);
-            deleteTodo(index)
-        }
-    );
+            deleteTodo(index);
+        },[memos]);
+        console.log("delete");
     const onChangeSearch = (e) =>{
         setSearchText(e.target.value);
     };
@@ -48,8 +48,10 @@ export const App = () => {
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
+            <p>
             <input type ="text" onChange={onChangeSearch} value={searchText} placeholder="検索文字を入力" />
-            <MemoList memos={memos} onClickDelete={onClickDelete} />
+            </p>
+            <MemoList memos={filteredMemos} onClickDelete={onClickDelete} />
             {/* <div>
                 <p>memoリスト</p>
                 <Ul key={memo}>
