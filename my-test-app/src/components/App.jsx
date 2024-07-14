@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useMemo } from  "react";
 import styled from "styled-components";
 import { MemoList } from "./MemoList";
 // import { useCallback } from "react";
@@ -12,9 +13,15 @@ export const App = () => {
     // 状態変数の定義
     const [text, setText] = useState("");
     const {memos, addTodo, deleteTodo} = useMemoList();
-    const {filter, setFilter} = useState("");
+    const [searchText, setSearchText] = useState("");
     // const [memos, setMemos] = useState([]);
-    // イベントアクションの定義
+
+    // イベント動作の定義
+    const filteredMemos = useMemo(
+        () => {
+            return memos.filter((memo) => memo.includes(setSearchText));
+        }, [memos,setSearchText]
+    );
     const onChangeText = (e) => setText(e.target.value);
     const onClickAdd = () => {
     //     const newMemos = [...memos];
@@ -31,10 +38,9 @@ export const App = () => {
             deleteTodo(index)
         }
     );
-    const memoFilter = ({filter, setFilter}) => {
-        const handleChange =(e) =>setFilter(e.target.value)
+    const onChangeSearch = (e) =>{
+        setSearchText(e.target.value);
     };
-
 
     return(
         <SDiv>
@@ -42,7 +48,7 @@ export const App = () => {
             <h1>簡単メモ</h1>
             <input type="text" value={text} onChange={onChangeText} />
             <SButton onClick={onClickAdd}>追加</SButton>
-            <input type ="text" onChange={memoFilter} text={text}></input>
+            <input type ="text" onChange={onChangeSearch} value={searchText} placeholder="検索文字を入力" />
             <MemoList memos={memos} onClickDelete={onClickDelete} />
             {/* <div>
                 <p>memoリスト</p>

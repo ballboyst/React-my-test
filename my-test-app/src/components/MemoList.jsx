@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 export const MemoList = (props) =>{
-    const {memos,onClickDelete} = props;
+    const {memos,onClickDelete, filteredMemos} = props;
     return(
         <div>
         <p>memoリスト</p>
         <Ul>
-            {memos.map(
+            {filteredMemos.map(
                 (memo, index) => (
                 <li key={memo}>
                     <SWrapper>
