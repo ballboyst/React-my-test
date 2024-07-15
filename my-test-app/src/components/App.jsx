@@ -17,6 +17,8 @@ const App = () => {
         setMemos(newMemos);
         console.log("削除")
     }
+    const [memofilter, setMemoFilter] = useState("");
+    const filteredMemos = (e) => setMemoFilter(e.target.value)
     // const filteredMemos = (memos) =>{
     //     memos.filter(???????)
     // }
@@ -25,8 +27,10 @@ const App = () => {
             <p>簡単メモリスト</p>
             <input type="text" value={text} onChange={onChangeText} />
             <button onClick={onClickAdd}>追加</button>
+            <p>検索ワード<p/>
+            <input type="text" value={memofilter} onChange={filteredMemos} />
             <ul>
-                {memos.map(
+                {memos.filter(
                     (memo,index) => (
                         <li key={memo}>
                             <p>{memo}</p>
