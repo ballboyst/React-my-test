@@ -15,6 +15,7 @@ const App = () => {
         const newMemos = [...memos];
         newMemos.splice(index, 1);
         setMemos(newMemos);
+        console.log("削除")
     }
     // const filteredMemos = (memos) =>{
     //     memos.filter(???????)
@@ -23,14 +24,17 @@ const App = () => {
         <div>
             <p>簡単メモリスト</p>
             <input type="text" value={text} onChange={onChangeText} />
-            <button onClickAdd={onClickAdd}>追加</button>
+            <button onClick={onClickAdd}>追加</button>
             <ul>
-                memos.map(
-                    (
-                        <li key={memo}>{memo}</li>
-                    ),[memos]
+                {memos.map(
+                    (memo,index) => (
+                        <li key={memo}>
+                            <p>{memo}</p>
+                            <button onClick={()=>onClickDelete(index)}>削除</button>
+                        </li>
+                    )
                 )
-                <button onClick={onClickDelete(memo)}>削除</button>
+            }
             </ul>
         </div>
     );
