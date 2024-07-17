@@ -32,16 +32,16 @@ const App = () => {
         <SDiv>
             <SH2>簡単メモリスト</SH2>
             <input type="text" value={text} onChange={onChangeText} />
-            <button onClick={onClickAdd}>追加</button>
+            <SButton2 onClick={onClickAdd}>追加</SButton2>
             <Sp>検索ワード</Sp>
             <input type="text" value={searchText} onChange={onChangeSearch} />
             <ul>
                 {filteredMemos.map(
                     (memo,index) => (
-                        <li key={memo}>
+                        <Sli key={memo}>
                             <p>{memo}</p>
                             <button onClick={()=>onClickDelete(index)}>削除</button>
-                        </li>
+                        </Sli>
                     )
                 )
             }
@@ -60,5 +60,12 @@ const SH2 = styled.h2`
 `;
 const Sp = styled.p`
     color: #FFFFFF;
+`;
+const Sli = styled.li`
+    display: flex;
+    margin-left: 30%;
+`;
+const SButton2 = styled.button`
+    height: 30px;
 `;
 export default(App);
