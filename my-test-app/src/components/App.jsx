@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useMemo } from "react";
+import {styled} from "styled-components";
 
 const App = () => {
     const [text, setText] = useState("");
@@ -28,11 +29,11 @@ const App = () => {
     );
     
     return(
-        <div>
-            <p>簡単メモリスト</p>
+        <SDiv>
+            <SH2>簡単メモリスト</SH2>
             <input type="text" value={text} onChange={onChangeText} />
             <button onClick={onClickAdd}>追加</button>
-            <p>検索ワード</p>
+            <Sp>検索ワード</Sp>
             <input type="text" value={searchText} onChange={onChangeSearch} />
             <ul>
                 {filteredMemos.map(
@@ -45,8 +46,19 @@ const App = () => {
                 )
             }
             </ul>
-        </div>
+        </SDiv>
     );
 };
 
+const SDiv = styled.div`
+    background-color: green;
+    text-align: center;
+    height: 20rem;
+`;
+const SH2 = styled.h2`
+    color: #FFFFFF;
+`;
+const Sp = styled.p`
+    color: #FFFFFF;
+`;
 export default(App);
