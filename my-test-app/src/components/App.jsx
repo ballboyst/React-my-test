@@ -30,17 +30,16 @@ const App = () => {
     
     return(
         <SDiv>
-            <SH2>簡単メモリスト</SH2>
-            <input type="text" value={text} onChange={onChangeText} />
+            <SH2>ToDo List</SH2>
+            <SInput type="text" value={text} onChange={onChangeText} placeholder="Add ToDo"/>
             <SButton2 onClick={onClickAdd}>追加</SButton2>
-            <Sp>検索ワード</Sp>
-            <input type="text" value={searchText} onChange={onChangeSearch} />
+            <input type="text" value={searchText} onChange={onChangeSearch} placeholder="Search ToDo" />
             <ul>
                 {filteredMemos.map(
                     (memo,index) => (
                         <Sli key={memo}>
                             <p>{memo}</p>
-                            <button onClick={()=>onClickDelete(index)}>削除</button>
+                            <SButton2 onClick={()=>onClickDelete(index)}>削除</SButton2>
                         </Sli>
                     )
                 )
@@ -51,7 +50,7 @@ const App = () => {
 };
 
 const SDiv = styled.div`
-    background-color: green;
+    background-color: #008080;
     text-align: center;
     height: 20rem;
 `;
@@ -64,8 +63,22 @@ const Sp = styled.p`
 const Sli = styled.li`
     display: flex;
     margin-left: 30%;
+    color: #FFFFFF;
+    background-color: #008070;
+    border: solid;
+    border-radius:5px;
+    margin-bottom:10px;
+    width: 40%;
+`;
+const SInput = styled.input`
+    background-color:#20B2AA;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    color: DCDCDC;
 `;
 const SButton2 = styled.button`
     height: 30px;
+    margin-left: 15px;
 `;
 export default(App);
