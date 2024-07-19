@@ -1,7 +1,7 @@
 import React from "react";
 import {styled} from "styled-components";
 import { BrowserRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
-import { ReadTodoLists } from "./ReadTodo";
+import { TodoLists } from "./TodoLists";
 import { CreateTodoLists } from "./CreateTodo";
 import { DetailTodoLists } from "./DetailTodo";
 import { UpdateTodoLists } from "./UpdateTodo";
@@ -16,7 +16,12 @@ const App = () => {
                 </h3>
             </SHeader>
             <BrowserRouter>
-                <ReadTodoLists />
+                <Route exact path="/">
+                    <TodoLists />
+                </Route>
+                <Route path="/create">
+                    <CreateTodoLists />
+                </Route>
             </BrowserRouter>
             <p></p>
         </SDiv>

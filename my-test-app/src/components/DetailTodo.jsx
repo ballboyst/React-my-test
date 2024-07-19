@@ -2,29 +2,29 @@ import {styled} from "styled-components";
 import { useState } from "react";
 import { useMemo } from "react";
 
-export const DetailTodoLists = () => {
+export const TodoLists = () => {
     const [text, setText] = useState("");
     const onChangeText = (e) => setText(e.target.value);
-    const [memos, setMemos] = useState([]);
+    const [lists, setLists] = useState([]);
     const onClickAdd = () => {
-        const newMemos =  [...memos];
-        newMemos.push(text);
-        setMemos(newMemos);
+        const newLists =  [...lists];
+        newLists.push(text);
+        setLists(newLists);
         setText("");
     };
     const onClickDelete = (index) =>{
-        const newMemos = [...memos];
-        newMemos.splice(index, 1);
-        setMemos(newMemos);
+        const newLists = [...lists];
+        newLists.splice(index, 1);
+        setLists(newLists);
         console.log("削除")
     }
     const [searchText, setSearchText] = useState("");
     const onChangeSearch = (e) => setSearchText(e.target.value);
-    const filteredMemos = useMemo(
+    const filteredLists = useMemo(
         () => {
-            return memos.filter(
-                (memo)=>{return memo.includes(searchText)})
-        }, [memos,searchText]
+            return lists.filter(
+                (title)=>{return title.includes(searchText)})
+        }, [lists,searchText]
     );
     return(
         <div>
@@ -35,10 +35,10 @@ export const DetailTodoLists = () => {
                 <SSearchInput type="text" value={searchText} onChange={onChangeSearch} placeholder="Search ToDo" />
             </p>
             <ul>
-                {filteredMemos.map(
-                    (memo,index) => (
-                        <Sli key={memo}>
-                            <p>{memo}</p>
+                {filteredLists.map(
+                    (title,index) => (
+                        <Sli key={title}>
+                            <p>{title}</p>
                             <div>
                                 <SRead>詳細</SRead>
                                 <SUpdate>修正</SUpdate>
