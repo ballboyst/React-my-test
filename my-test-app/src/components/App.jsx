@@ -31,19 +31,27 @@ const App = () => {
     return(
         <SDiv>
             <SHeader>
-                <a href="/">Top</a>
-                <a href="/create">Create</a>
+                <h3>
+                <Sa1 href="/">Top</Sa1>
+                <Sa2 href="/create">Create</Sa2>
+                </h3>
             </SHeader>
-            <SH2>ToDo List</SH2>
-            <SInput type="text" value={text} onChange={onChangeText} placeholder="Add ToDo"/>
-            <SButton2 onClick={onClickAdd}>追加</SButton2>
-            <input type="text" value={searchText} onChange={onChangeSearch} placeholder="Search ToDo" />
+            <SH2>Todo List</SH2>
+            <SAddInput type="text" value={text} onChange={onChangeText} placeholder="Add ToDo"/>
+            <SAdd onClick={onClickAdd}>追加</SAdd>
+            <p>
+                <SSearchInput type="text" value={searchText} onChange={onChangeSearch} placeholder="Search ToDo" />
+            </p>
             <ul>
                 {filteredMemos.map(
                     (memo,index) => (
                         <Sli key={memo}>
                             <p>{memo}</p>
-                            <SButton2 onClick={()=>onClickDelete(index)}>削除</SButton2>
+                            <div>
+                                <SRead>詳細</SRead>
+                                <SUpdate>修正</SUpdate>
+                                <SDelete onClick={()=>onClickDelete(index)}>削除</SDelete>
+                            </div>
                         </Sli>
                     )
                 )
@@ -53,42 +61,77 @@ const App = () => {
     );
 };
 
-const SHeader = styled.div`
-    display: float;
-    margin: 0px 50px 20px 50px;
-    text-align: justify;
-`;
 
 const SDiv = styled.div`
     background-color: #008080;
     text-align: center;
     height: 20rem;
 `;
+const SHeader = styled.div`
+    display: float;
+    justify-content: space-between;
+ `;
+const Sa1 = styled.a`
+    text-align: left
+    margin-left: 50px;
+`;
+const Sa2 = styled.a`
+    text-align: right;
+    margin-left: 50px;
+`;
+
 const SH2 = styled.h2`
     color: #FFFFFF;
 `;
 // const Sp = styled.p`
 //     color: #FFFFFF;
 // `;
-const Sli = styled.li`
-    display: flex;
-    margin-left: 30%;
-    color: #FFFFFF;
-    background-color: #008070;
-    border: solid;
-    border-radius:5px;
-    margin-bottom:10px;
-    width: 40%;
+const SAddInput = styled.input`
+    background-color:#20B2AA;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 60%;
+    color: DCDCDC;
 `;
-const SInput = styled.input`
+const SAdd = styled.button`
+    height: 30px;
+    margin-left: 15px;
+    border-radius: 5px;
+`;
+const SSearchInput = styled.input`
     background-color:#20B2AA;
     border-radius: 5px;
     border: none;
     height: 25px;
     color: DCDCDC;
+    width: 70%;
 `;
-const SButton2 = styled.button`
-    height: 30px;
-    margin-left: 15px;
+const Sli = styled.li`
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    color: #FFFFFF;
+    background-color: #007700;
+    border: none;
+    border-radius:5px;
+    margin: 10px 8% 10px 8%;
+    width: 77%;
+    align-items: center;
+`;
+const SRead = styled.button`
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 5px;
+`;
+const SUpdate = styled.button`
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 5px;
+`;
+const SDelete = styled.button`
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 5px;
 `;
 export default(App);
