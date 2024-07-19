@@ -30,6 +30,10 @@ const App = () => {
     
     return(
         <SDiv>
+            <SHeader>
+                <a href="/">Top</a>
+                <a href="/create">Create</a>
+            </SHeader>
             <SH2>ToDo List</SH2>
             <SInput type="text" value={text} onChange={onChangeText} placeholder="Add ToDo"/>
             <SButton2 onClick={onClickAdd}>追加</SButton2>
@@ -49,6 +53,12 @@ const App = () => {
     );
 };
 
+const SHeader = styled.div`
+    display: float;
+    margin: 0px 50px 20px 50px;
+    text-align: justify;
+`;
+
 const SDiv = styled.div`
     background-color: #008080;
     text-align: center;
@@ -57,9 +67,9 @@ const SDiv = styled.div`
 const SH2 = styled.h2`
     color: #FFFFFF;
 `;
-const Sp = styled.p`
-    color: #FFFFFF;
-`;
+// const Sp = styled.p`
+//     color: #FFFFFF;
+// `;
 const Sli = styled.li`
     display: flex;
     margin-left: 30%;
