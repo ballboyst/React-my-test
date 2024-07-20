@@ -1,10 +1,12 @@
 import React from "react";
 import {styled} from "styled-components";
-import { BrowserRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
+import { BrowserRouter, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { TodoLists } from "./TodoLists";
 import { CreateTodoLists } from "./CreateTodo";
 import { DetailTodoLists } from "./DetailTodo";
 import { UpdateTodoLists } from "./UpdateTodo";
+import { todoContext } from "./providers/todoContext";
+import { NotFound } from "./NotFound";
 
 const App = () => {
     return(
@@ -16,12 +18,23 @@ const App = () => {
                 </h3>
             </SHeader>
             <BrowserRouter>
-                <Route exact path="/">
-                    <TodoLists />
-                </Route>
-                <Route path="/create">
-                    <CreateTodoLists />
-                </Route>
+                <Switch>
+                    <Route exact path="/">
+                        <TodoLists />
+                    </Route>
+                    <Route path="/create">
+                        <CreateTodoLists />
+                    </Route>
+                    <Route path="/detail">
+                        <DetailTodoLists />
+                    </Route>
+                    <Route path="/update">
+                        <UpdateTodoLists />
+                    </Route>
+                    <Route>
+                        <NotFound />
+                    </Route>
+                </Switch>
             </BrowserRouter>
             <p></p>
         </SDiv>

@@ -2,7 +2,7 @@ import {styled} from "styled-components";
 import { useState } from "react";
 import { useMemo } from "react";
 
-export const TodoLists = () => {
+export const DetailTodoLists = () => {
     const [text, setText] = useState("");
     const onChangeText = (e) => setText(e.target.value);
     const [lists, setLists] = useState([]);
@@ -28,22 +28,12 @@ export const TodoLists = () => {
     );
     return(
         <div>
-            <SH2>Todo List</SH2>
-            <SAddInput type="text" value={text} onChange={onChangeText} placeholder="Add ToDo"/>
-            <SAdd onClick={onClickAdd}>追加</SAdd>
-            <p>
-                <SSearchInput type="text" value={searchText} onChange={onChangeSearch} placeholder="Search ToDo" />
-            </p>
+            <SH2>Detail Todo</SH2>
             <ul>
                 {filteredLists.map(
                     (title,index) => (
                         <Sli key={title}>
                             <p>{title}</p>
-                            <div>
-                                <SRead>詳細</SRead>
-                                <SUpdate>修正</SUpdate>
-                                <SDelete onClick={()=>onClickDelete(index)}>削除</SDelete>
-                            </div>
                         </Sli>
                     )
                 )

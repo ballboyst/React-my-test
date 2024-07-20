@@ -40,7 +40,9 @@ export const TodoLists = () => {
                         <Sli key={title}>
                             <p>{title}</p>
                             <div>
-                                <SRead>詳細</SRead>
+                                <SRead >
+                                    <a href="/detail">詳細</a>
+                                </SRead>
                                 <SUpdate>修正</SUpdate>
                                 <SDelete onClick={()=>onClickDelete(index)}>削除</SDelete>
                             </div>
