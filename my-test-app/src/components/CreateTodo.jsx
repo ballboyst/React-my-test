@@ -1,9 +1,10 @@
 import {styled} from "styled-components";
-import { useContext, useState } from "react";
-import { useMemo } from "react";
+import { useContext } from "react";
 import { todoContext } from "./providers/todoContext";
+// import { useNavigate } from "react-router-dom";
 
 export const CreateTodoLists = () => {
+    // const navigate = useNavigate();
     const {text, onChangeText, onClickAdd} = useContext(todoContext);
     return(
         <div>

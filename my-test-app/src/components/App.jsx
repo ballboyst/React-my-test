@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useMemo } from "react";
 import { styled } from "styled-components";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { TodoLists } from "./TodoLists";
 import { CreateTodoLists } from "./CreateTodo";
 import { DetailTodoLists } from "./DetailTodo";
@@ -10,7 +10,6 @@ import { todoContext } from "./providers/todoContext";
 import { NotFound } from "./NotFound";
 
 const App = () => {
-    const navigate = useNavigate();
     const [text, setText] = useState("");
     const [lists, setLists] = useState([]);
     const [searchText, setSearchText] = useState("");
@@ -22,13 +21,14 @@ const App = () => {
         const newLists = [...lists, text];
         setLists(newLists);
         setText("");
-        navigate("/");
+        console.log(filteredLists);
     };
 
     const onClickDelete = (index) => {
         const newLists = [...lists];
         newLists.splice(index, 1);
         setLists(newLists);
+        console.log("deleteされました");
     };
 
     const filteredLists = useMemo(
@@ -36,30 +36,27 @@ const App = () => {
         [lists, searchText]
     );
 
-    return(
-        <BrowserRouter>
+    return (
         <todoContext.Provider
             value={{ lists, filteredLists, searchText, onChangeSearch, onClickDelete, text, onChangeText, onClickAdd }}
         >
             <SDiv>
                 <SHeader>
                     <h3>
-                        <Sa1 href="/">Top</Sa1>
-                        <Sa2 href="/create">Create</Sa2>
+                        <Link to="/">Top</Link>
+                        <Link to="/create">Create</Link>
                     </h3>
                 </SHeader>
                 <Routes>
                     <Route path="/" element={<TodoLists />} />
                     <Route path="/create" element={<CreateTodoLists />} />
-                    <Route path="/detail" element={<DetailTodoLists />} />
-                    <Route path="/update" element={<UpdateTodoLists />} />
-                    <Route path="*" element={<NotFound />} />
+                    <Route path="/*" element={<NotFound />} />
                 </Routes>
             </SDiv>
         </todoContext.Provider>
-        </BrowserRouter>
     );
 };
+
 
 const SDiv = styled.div`
     background-color: #008080;
@@ -80,4 +77,4 @@ const Sa2 = styled.a`
     margin-right: 50px; /* 右側のマージンを使用 */
 `;
 
-export default (App);
+export default App;
