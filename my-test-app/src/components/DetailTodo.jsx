@@ -1,44 +1,20 @@
 import {styled} from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useMemo } from "react";
+import { todoContext } from "./providers/todoContext";
 
 export const DetailTodoLists = () => {
-    const [text, setText] = useState("");
-    const onChangeText = (e) => setText(e.target.value);
-    const [lists, setLists] = useState([]);
-    const onClickAdd = () => {
-        const newLists =  [...lists];
-        newLists.push(text);
-        setLists(newLists);
-        setText("");
-    };
-    const onClickDelete = (index) =>{
-        const newLists = [...lists];
-        newLists.splice(index, 1);
-        setLists(newLists);
-        console.log("削除")
-    }
-    const [searchText, setSearchText] = useState("");
-    const onChangeSearch = (e) => setSearchText(e.target.value);
-    const filteredLists = useMemo(
-        () => {
-            return lists.filter(
-                (title)=>{return title.includes(searchText)})
-        }, [lists,searchText]
-    );
+    const {lists} =  useContext(todoContext);
     return(
         <div>
             <SH2>Detail Todo</SH2>
-            <ul>
-                {filteredLists.map(
-                    (title,index) => (
-                        <Sli key={title}>
-                            <p>{title}</p>
-                        </Sli>
-                    )
-                )
-            }
-            </ul>
+            <p>
+                {lists
+                }
+            </p>
+            <p>
+                {"context"}
+            </p>
         </div>
     );
 };

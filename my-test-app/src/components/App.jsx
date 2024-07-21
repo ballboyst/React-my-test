@@ -1,6 +1,7 @@
 import React from "react";
-import {styled} from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { useState, useMemo } from "react";
+import { styled } from "styled-components";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { TodoLists } from "./TodoLists";
 import { CreateTodoLists } from "./CreateTodo";
 import { DetailTodoLists } from "./DetailTodo";
@@ -9,38 +10,56 @@ import { todoContext } from "./providers/todoContext";
 import { NotFound } from "./NotFound";
 
 const App = () => {
+    const navigate = useNavigate();
+    const [text, setText] = useState("");
+    const [lists, setLists] = useState([]);
+    const [searchText, setSearchText] = useState("");
+
+    const onChangeText = (e) => setText(e.target.value);
+    const onChangeSearch = (e) => setSearchText(e.target.value);
+
+    const onClickAdd = () => {
+        const newLists = [...lists, text];
+        setLists(newLists);
+        setText("");
+        navigate("/");
+    };
+
+    const onClickDelete = (index) => {
+        const newLists = [...lists];
+        newLists.splice(index, 1);
+        setLists(newLists);
+    };
+
+    const filteredLists = useMemo(
+        () => lists.filter((title) => title.includes(searchText)),
+        [lists, searchText]
+    );
+
     return(
-        <SDiv>
-            <SHeader>
-                <h3>
-                <Sa1 href="/">Top</Sa1>
-                <Sa2 href="/create">Create</Sa2>
-                </h3>
-            </SHeader>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/">
-                        <TodoLists />
-                    </Route>
-                    <Route path="/create">
-                        <CreateTodoLists />
-                    </Route>
-                    <Route path="/detail">
-                        <DetailTodoLists />
-                    </Route>
-                    <Route path="/update">
-                        <UpdateTodoLists />
-                    </Route>
-                    <Route>
-                        <NotFound />
-                    </Route>
-                </Switch>
-            </BrowserRouter>
-            <p></p>
-        </SDiv>
+        <BrowserRouter>
+        <todoContext.Provider
+            value={{ lists, filteredLists, searchText, onChangeSearch, onClickDelete, text, onChangeText, onClickAdd }}
+        >
+            <SDiv>
+                <SHeader>
+                    <h3>
+                        <Sa1 href="/">Top</Sa1>
+                        <Sa2 href="/create">Create</Sa2>
+                    </h3>
+                </SHeader>
+                <Routes>
+                    <Route path="/" element={<TodoLists />} />
+                    <Route path="/create" element={<CreateTodoLists />} />
+                    <Route path="/detail" element={<DetailTodoLists />} />
+                    <Route path="/update" element={<UpdateTodoLists />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </SDiv>
+        </todoContext.Provider>
+        </BrowserRouter>
     );
 };
-
 
 const SDiv = styled.div`
     background-color: #008080;
@@ -48,16 +67,17 @@ const SDiv = styled.div`
     height: 100%;
 `;
 const SHeader = styled.div`
-    display: float;
+    display: flex; /* floatをflexに変更 */
     justify-content: space-between;
- `;
+    padding: 10px; /* パディングを追加 */
+`;
 const Sa1 = styled.a`
-    text-align: left
+    text-align: left;
     margin-left: 50px;
 `;
 const Sa2 = styled.a`
     text-align: right;
-    margin-left: 50px;
+    margin-right: 50px; /* 右側のマージンを使用 */
 `;
 
-export default(App);
+export default (App);
