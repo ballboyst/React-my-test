@@ -16,6 +16,8 @@ export const MemoList: FC<Props> = props => {
                     <li key={memo}>
                         <SMemoWrapper>
                             <p>{memo}</p>
+                            <SButton>詳細</SButton>
+                            <SButton>編集</SButton>
                             <SButton onClick={() => onClickDelete(index)}>削除</SButton>
                         </SMemoWrapper>
                     </li>

@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { MemoList } from "./components/MemoList"
 // 以下３行はコンテキストの使用に関するコードを試験的に記述
 import { AdminFlagContext } from "./components/providers/AdminFlagProvider";
-const contextValue = useContext(AdminFlagContext);
-console.log(contextValue);
+
 
 
 export const App: FC = () =>{
+  const contextValue = useContext(AdminFlagContext);
+  console.log(contextValue);
     const [text,setText] = useState<string>("");
     const [memos, setMemos] = useState<string[]>([]);
     const onChangeText = (e:ChangeEvent<HTMLInputElement>) =>setText(e.target.value);
