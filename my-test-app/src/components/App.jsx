@@ -1,70 +1,54 @@
-import React from "react"
-import {useState} from "react"
-import styled from "styled-components"
-import { MemoList } from "./MemoList";
-import { todoContext } from "./providers/todoContext";
+import React, `{Component}` from "react";
 
-const App = () => {
-    const [text, setText]=useState("");
-    const [memos, setMemos]=useState([]);
-
-    const onChangeText = (e) => setText(e.target.value);
-    const onClickAdd = () => {
-        const newMemos = [...memos];
-        newMemos.push(text);
-        setMemos(newMemos);
-        setText("");
+export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            todos:[
+                {
+                    id:1,
+                    title: 'Task1',
+                    editFlag: false,
+                },
+                {
+                    id:2,
+                    title: 'Task2',
+                    editFlag: false,
+                },
+            ],
+            uniqueID: 2,
+            inputValue: '',
+            searchKeyWord: '',
+        };
     };
-    const onClickDelete = (index) =>{
-        const newMemos =  [...memos];
-        newMemos.splice(index, 1);
-        setMemos(newMemos);
-        // デバッグ用コード
-        console.log("削除しました");
-    };
+    this.handleAdd = this.handleAdd.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.searchResult = this.searchResult.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.changeEditFlg = this.changeEditFlg.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+}
 
+componentWillMount(){
+    console.log("componentWillMount");
+}
 
+componentDidMount(){
+    console.log('componentDidMount');
+}
 
-    return(
-        <SDiv>
-            <h1>簡単メモ</h1>
-            <SContainer>
-                <input type="text" value={text} onChange={onChangeText} />
-                <SButton onClick={onClickAdd}>追加</SButton>
-            </SContainer>
-            <todoContext.Provider value={{memos, onClickDelete}}>
-               <p>メモリスト</p>
-                <MemoList />
-            </todoContext.Provider>
-            {/* <ul>
-                {memos.map(
-                    (memo, index)=>(
-                        <li key={memo}>
-                            <SContainer>
-                                <p>{memo}</p>
-                                <SButton onClick={()=>onClickDelete(index)}>削除</SButton>
-                            </SContainer>
-                        </li>
-                    ))}
-            </ul> */}
-        </SDiv>
-    )
+handleAdd(e) {
+    if (e.keyCode === 13 && e.target.value != "") {
+        this.setState({
+            todos: this.state.todos.concat({
+                id:this.state.uniqueId + 1,
+                tittle: e.target.value,
+                editFlag: false,
+            }),
+            uniqueId: this.state.unique + 1,
+        });
+        this.setState({ inputValue:''});
+    }
+}
 
-};
-
-
-const SDiv = styled.div`
-    background-color: green;
-    text-align: center;
-`;
-const SContainer = styled.div`
-    display: flex;
-    margin-left: 40%;
-`;
-const SButton = styled.button`
-    border: solid 1px;
-    border-radius: 5px;
-    margin: 5px;
-`;
-
-export default(App);
