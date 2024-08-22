@@ -30,9 +30,9 @@ export default class App extends Component {
     this.handleDelete = this.handleDelete.bind(this);
 }
 
-componentWillMount(){
-    console.log("componentWillMount");
-}
+// componentWillMount(){
+//     console.log("componentWillMount");
+// }
 
 componentDidMount(){
     console.log('componentDidMount');
@@ -52,3 +52,81 @@ handleAdd(e) {
     }
 }
 
+onChange(e) {
+    this.setState({
+        inputValue: e.target.value,
+    });
+}
+
+handleSearch(e) {
+    this.setState({
+        searchKeyWord: e.target.value,
+    });
+}
+
+searchResult(todo) {
+    const regexp = new RegExp('^' + this.satate.searchKeyWord, 'i');
+    return todo.title.match(regexp);
+}
+
+handleUpdate(target, e) {
+    const editIndex = this.state,todos.findIndex(
+        (todo) => todo.id ==targetId
+    );
+    const nextTools = this.state.todos;
+    netxTodos[editIndex].title = e.target.value;
+    netxTodos[editIndex].deitFlg = false;
+    this.setState({
+        todos:nextTodos,
+    });
+}
+changeEditFlg(targetId) {
+    const editIndex = this.state.todos.findIndex(
+        (todo) => todo.id === targetId
+    );
+    const nextTodos = this.state.todos;
+    nextTodos(editIndex).editFlg = true;
+    this.setState({
+        todos: nextTodos,
+    });
+}
+
+handleDelete(targetId) {
+    const deleteIndex = this.state.todos.findIndex(
+        (todo) => todo.id === targetId
+    );
+    this.state.todos.splice(deleteIndex, 1);
+    this.setState({
+        todos: this.state.todos,
+    });
+}
+
+render () {
+    const todos = this.state.searchKeyWord
+    ? this.state.todos.filter(this.searchResult)
+    : this.state.todos;
+    return (
+        <div className="wrapper">
+            <h1 className="title">Todo List</h1>
+            <AddTodo
+              value={this.state.inputValue}
+              handleAdd={this.handleAdd}
+              onChange={this.onChange}
+            />
+            <SearchTodo handleSearch={this.handleSearch} />
+            <TodoList
+             todos={todos}
+             handleUpdate={this.handleUpdate}
+             changeEditFlg={this.changeEditFlg}
+             onChange={this.onChange}
+             />
+             <SearchTodo handleSearch={this.handleSearch} />
+             <TodoList
+               todos={todos}
+               handleUpdate={this.handleUpdate}
+               changeEdiFlg={this.changeEditFlg}
+               handleDelete={this.handleDelete}
+            />
+        </div>
+    );
+}
