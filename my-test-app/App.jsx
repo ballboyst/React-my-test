@@ -16,11 +16,10 @@ export default class App extends Component {
                     editFlag: false,
                 },
             ],
-            uniqueID: 2,
-            inputValue: '',
-            searchKeyWord: '',
+            uniqueID: 2, //todo追加した際のidを３から開始する
+            inputValue: '', //todo追加フォームの入力値
+            searchKeyWord: '', //検索キーワード
         };
-    };
     this.handleAdd = this.handleAdd.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -69,7 +68,7 @@ searchResult(todo) {
     return todo.title.match(regexp);
 }
 
-handleUpdate(target, e) {
+handleUpdate(targetId, e) {
     const editIndex = this.state,todos.findIndex(
         (todo) => todo.id ==targetId
     );
@@ -129,4 +128,5 @@ render () {
             />
         </div>
     );
-}
+};
+};
