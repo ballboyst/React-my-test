@@ -1,4 +1,8 @@
-import React, `{Component}` from "react";
+import React, {Component} from 'react';
+import AddTodo from './components/AddTodo';
+import SearchTodo from './components/SearchTodo';
+import TodoList from './components/TodoList';
+
 
 export default class App extends Component {
     constructor() {
@@ -38,14 +42,14 @@ componentDidMount(){
 }
 
 handleAdd(e) {
-    if (e.keyCode === 13 && e.target.value != "") {
+    if (e.keyCode === 13 && e.target.value !== "") {
         this.setState({
             todos: this.state.todos.concat({
                 id:this.state.uniqueId + 1,
                 tittle: e.target.value,
-                editFlag: false,
+                editFlg: false,
             }),
-            uniqueId: this.state.unique + 1,
+            uniqueId: this.state.uniqueId + 1,
         });
         this.setState({ inputValue:''});
     }
@@ -69,12 +73,12 @@ searchResult(todo) {
 }
 
 handleUpdate(targetId, e) {
-    const editIndex = this.state,todos.findIndex(
-        (todo) => todo.id ==targetId
+    const editIndex = this.state.todos.findIndex(
+        (todo) => todo.id === targetId
     );
-    const nextTools = this.state.todos;
-    netxTodos[editIndex].title = e.target.value;
-    netxTodos[editIndex].deitFlg = false;
+    const nextTodos = this.state.todos;
+    nextTodos[editIndex].title = e.target.value;
+    nextTodos[editIndex].editFlg = false;
     this.setState({
         todos:nextTodos,
     });

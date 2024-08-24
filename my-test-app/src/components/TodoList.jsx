@@ -1,11 +1,11 @@
-import React, { Component } from "React";
+import React, { Component } from "react";
 import Todo from './Todo'
 
 export default class TodoList extends Component {
     constructor(props) {
         super(props);
             this.handleChangeTitle = this.handleChangeFlg.bind(this);
-        this.handleChangeFlg = this.handleChangeFlgChangeFlg.bind(this);
+        this.handleChangeFlg = this.handleChangeFlg.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
     }
 
@@ -14,11 +14,11 @@ export default class TodoList extends Component {
         this.props.handleUpdate(id, e);
     }
     //親コンポーネントのtodoのeditFlgをtrueにする
-    this.handleChangeFlg(id){
+    handleChangeFlg(id){
         this.props.changeEditFlg(id);
     // 親コンポーネントのtodo削除処理
     }
-    this.handleRemove(id) {
+    handleRemove(id) {
         this.props.handleDelete(id);
     }
 
